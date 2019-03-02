@@ -1,16 +1,18 @@
 import React from 'react';
 import Chart from 'chart.js';
 
+
+
 class ChartTag extends React.Component {
     componentDidMount(){
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: ["1.03", "2.03", "3.0", "4.03", "5.03", "6.03"],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [4, 6, 12, 17, 9, 12],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -45,6 +47,7 @@ class ChartTag extends React.Component {
     render() {
         return (
             <div className="center" style={{width: '46vw', position: 'relative'}}>
+                <span>Your position: {this.props.message} {this.props.lat} {this.props.long} </span>
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         );

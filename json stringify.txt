@@ -1,0 +1,2 @@
+<strong>Temperature:</strong> {JSON.stringify(this.state.weatherData.daily.data)} Celsius degree <br />
+            <strong>{JSON.stringify(this.state.weatherData.daily.summary)}</strong>

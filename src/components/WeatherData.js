@@ -1,8 +1,8 @@
 import React from 'react';
-import ChartTag from './ChartTag';
+import TemperaturesList from './TemperaturesList';
 
 class WeatherData extends React.Component {
-    state = {weatherData: {}};
+    state = { weatherData: {} };
 
     componentDidMount(){
         const headers = new Headers({
@@ -16,28 +16,27 @@ class WeatherData extends React.Component {
             headers: headers
         });
 
-        /*fetch(`https://api.darksky.net/forecast/${key}/50,16`, request)
-            .then((response) => {
-                response.json().then(respData => {
-                    console.log(respData.daily.data[0]);
-                })
-            }) 
-            .catch((err) => {
-                console.log(err);
-            });
-            */
-        fetch(`https://api.darksky.net/forecast/${key}/50,16`, request)
+        fetch(`https://api.darksky.net/forecast/${key}/${this.props.lat},${this.props.long}?units=si`, request)
         .then((response => response.json()))
         .then((responseJson => {
+            console.log(responseJson.daily);
             this.setState({
-                weatherData: {responseJson}
+                weatherData: responseJson
             })
         }))
+        .catch((err) => console.log(err));
     }
+
+
 
     render(){
         return(
-            <div>elo</div>
+            <div>
+            {JSON.stringify(this.state.weatherData.daily)}
+            <h3>Current weather:</h3>
+            <TemperaturesList temps = {this.state.weatherData.daily} />
+            </div>
+            
         );
     };
 };

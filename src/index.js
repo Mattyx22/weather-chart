@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Menu from './components/Menu';
 import ChartTag from './components/ChartTag';
+import WeatherData from './components/WeatherData';
 
 class App extends React.Component {
     state = {lat: null, long: '', errorMsg: ''};
@@ -22,7 +23,11 @@ class App extends React.Component {
     renderContent() {
         if(this.state.lat && this.state.long && !this.state.errorMsg){
             return(
-                <ChartTag lat={this.state.lat} long={this.state.long} data={this.state.data} />
+                <div>
+                    <ChartTag lat={this.state.lat} long={this.state.long} />
+                    <WeatherData lat={this.state.lat} long={this.state.long}/>
+                </div>
+                
             );
         } else if (!this.state.lat && !this.state.long && this.state.errorMsg) {
             return (
@@ -40,6 +45,7 @@ class App extends React.Component {
             <div>
                 <Menu />
                 {this.renderContent()}
+                
             </div>
         )
     }

@@ -4,7 +4,30 @@ import Chart from 'chart.js';
 
 
 class ChartTag extends React.Component {
+    state = { weatherData: [] };
+    
     componentDidMount(){
+        const headers = new Headers({
+            'Content-Type': 'text/plain',
+            'key': 'f8e57f1fd54716f5fd4f0ce5023df702' 
+        });
+        const key = 'f8e57f1fd54716f5fd4f0ce5023df702';
+        const request = new Request({
+            method: 'GET',
+            mode: 'cors',
+            headers: headers
+        });
+
+        fetch(`https://api.darksky.net/forecast/${key}/50,16`, request)
+        .then((response => response.json()))
+        .then((responseJson => {
+            console.log(responseJson.currently);
+            this.setState({
+                weatherData: responseJson.currently
+            })
+        }))
+        .catch((err) => console.log(err));
+            
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
         type: 'line',
@@ -42,12 +65,15 @@ class ChartTag extends React.Component {
             }
         }
     });
+
     };
 
     render() {
         return (
             <div className="center" style={{width: '46vw', position: 'relative'}}>
                 <span>Your position: {this.props.message} {this.props.lat} {this.props.long} </span>
+                <h3>Current weather:</h3>
+                <p>{JSON.stringify(this.state.weatherData)}</p>
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         );

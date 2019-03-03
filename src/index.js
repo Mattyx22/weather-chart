@@ -22,7 +22,7 @@ class App extends React.Component {
     renderContent() {
         if(this.state.lat && this.state.long && !this.state.errorMsg){
             return(
-                <ChartTag lat={this.state.lat} long={this.state.long}/>
+                <ChartTag lat={this.state.lat} long={this.state.long} data={this.state.data} />
             );
         } else if (!this.state.lat && !this.state.long && this.state.errorMsg) {
             return (

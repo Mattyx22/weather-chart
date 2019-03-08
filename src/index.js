@@ -24,7 +24,7 @@ class App extends React.Component {
         if(this.state.lat && this.state.long && !this.state.errorMsg){
             return(
                 <div>
-                    <ChartTag lat={this.state.lat} long={this.state.long} />
+                    
                     <WeatherData lat={this.state.lat} long={this.state.long}/>
                 </div>
                 

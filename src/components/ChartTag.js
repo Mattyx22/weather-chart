@@ -1,18 +1,30 @@
 import React from 'react';
 import Chart from 'chart.js';
 
+let days = []
+
 class ChartTag extends React.Component {
     
+    days() {
+        let d = new Date();
+        
+        days = [d.getDate(), d.getDate()+1, d.getDate()+2, d.getDate()+3, d.getDate()+4, d.getDate()+5]
+
+        return days;
+    }
     
-    componentDidMount(){            
+    componentDidUpdate(){   
+        
+        let temperatures = this.props.tempList;
+
         var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
+        new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["1.03", "2.03", "3.0", "4.03", "5.03", "6.03"],
+            labels: this.days(),
             datasets: [{
-                label: '# of Votes',
-                data: [4, 6, 12, 17, 9, 12],
+                label: 'Celsius degrees',
+                data: temperatures,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -47,7 +59,7 @@ class ChartTag extends React.Component {
 
     render() {
         return (
-            <div className="center" style={{width: '46vw', position: 'relative'}}>
+            <div className="center" style={{width: '36vw', position: 'relative'}}>
                 <span>Your position: {this.props.message} {this.props.lat} {this.props.long} </span>
                 <h3>Current weather:</h3>
                 <canvas id="myChart" width="400" height="400"></canvas>

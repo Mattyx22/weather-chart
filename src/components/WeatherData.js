@@ -1,44 +1,52 @@
 import React from 'react';
-import TemperaturesList from './TemperaturesList';
+import axios from 'axios';
+import ChartTag from './ChartTag';
+
+let tempList = [];
 
 class WeatherData extends React.Component {
-    state = { weatherData: {} };
+    state = { weatherData: { daily: {data: [] } }, error: null, tempList: [] };
+    
 
     componentDidMount(){
-        const headers = new Headers({
-            'Content-Type': 'text/plain',
-            'key': 'f8e57f1fd54716f5fd4f0ce5023df702' 
-        });
-        const key = 'f8e57f1fd54716f5fd4f0ce5023df702';
-        const request = new Request({
-            method: 'GET',
-            mode: 'cors',
-            headers: headers
-        });
+        
 
-        fetch(`https://api.darksky.net/forecast/${key}/${this.props.lat},${this.props.long}?units=si`, request)
-        .then((response => response.json()))
-        .then((responseJson => {
-            console.log(responseJson.daily);
-            this.setState({
-                weatherData: responseJson
-            })
+        axios.get(`https://api.darksky.net/forecast/f8e57f1fd54716f5fd4f0ce5023df702/${this.props.lat},${this.props.long}?units=si`)
+        .then(result => this.setState({
+            weatherData: result.data
         }))
-        .catch((err) => console.log(err));
+        .catch(error => this.setState({
+            error: error
+        }))
+
+        this.setState({tempList: this.tempList()})
     }
 
+    tempList(){
+        this.state.weatherData.daily.data.map((temperature) => {
+            return tempList.push(Math.round(temperature.temperatureHigh));
+        })
 
+        return tempList;
+    }
 
     render(){
         return(
             <div>
-            {JSON.stringify(this.state.weatherData.daily)}
+            {/*JSON.stringify(this.state.weatherData)*/}
+            <ChartTag lat={this.props.lat} long={this.props.long} tempList={this.state.tempList} />
             <h3>Current weather:</h3>
-            <TemperaturesList temps = {this.state.weatherData.daily} />
+            Temperatures:
+            {this.tempList()}
+            {this.state.weatherData.daily.data.map((temperature) => {
+            return <div>{temperature.temperatureHigh}</div>
+            })}
             </div>
             
         );
     };
 };
+
+
 
 export default WeatherData;

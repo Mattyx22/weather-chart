@@ -6,7 +6,7 @@ import ChartTag from './components/ChartTag';
 import WeatherData from './components/WeatherData';
 
 class App extends React.Component {
-    state = {lat: null, long: '', errorMsg: ''};
+    state = {lat: null, long: '', errorMsg: '' };
 
     componentDidMount(){
         window.navigator.geolocation.getCurrentPosition(
@@ -24,7 +24,6 @@ class App extends React.Component {
         if(this.state.lat && this.state.long && !this.state.errorMsg){
             return(
                 <div>
-                    
                     <WeatherData lat={this.state.lat} long={this.state.long}/>
                 </div>
                 
@@ -40,10 +39,14 @@ class App extends React.Component {
         }
     };
 
+    onSearchSubmit(localization){
+        console.log(localization);
+    }
+
     render(){
         return(
             <div>
-                <Menu />
+                <Menu lat={this.state.lat} long={this.state.long} />
                 {this.renderContent()}
                 
             </div>

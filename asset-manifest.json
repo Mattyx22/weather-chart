@@ -1,11 +1,11 @@
 {
-  "main.js": "/weather-chart-online/static/js/main.0dc70d0e.chunk.js",
-  "main.js.map": "/weather-chart-online/static/js/main.0dc70d0e.chunk.js.map",
+  "main.js": "/weather-chart-online/static/js/main.8010d6e1.chunk.js",
+  "main.js.map": "/weather-chart-online/static/js/main.8010d6e1.chunk.js.map",
   "runtime~main.js": "/weather-chart-online/static/js/runtime~main.c11d7fef.js",
   "runtime~main.js.map": "/weather-chart-online/static/js/runtime~main.c11d7fef.js.map",
   "static/js/2.964590ac.chunk.js": "/weather-chart-online/static/js/2.964590ac.chunk.js",
   "static/js/2.964590ac.chunk.js.map": "/weather-chart-online/static/js/2.964590ac.chunk.js.map",
   "index.html": "/weather-chart-online/index.html",
-  "precache-manifest.570e22e51ff08951ff00f011545628c6.js": "/weather-chart-online/precache-manifest.570e22e51ff08951ff00f011545628c6.js",
+  "precache-manifest.33501edc4d07e38bcd7c5ec33e42f86e.js": "/weather-chart-online/precache-manifest.33501edc4d07e38bcd7c5ec33e42f86e.js",
   "service-worker.js": "/weather-chart-online/service-worker.js"
 }

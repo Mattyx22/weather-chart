@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/weather-chart-online/precache-manifest.570e22e51ff08951ff00f011545628c6.js"
+  "/weather-chart-online/precache-manifest.33501edc4d07e38bcd7c5ec33e42f86e.js"
 );
 
 workbox.clientsClaim();
